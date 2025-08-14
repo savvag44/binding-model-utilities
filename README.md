@@ -2,8 +2,6 @@
 
 This directory contains a collection of Python scripts for processing molecular binding data, converting file formats, and calculating performance metrics for machine learning models.
 
-## Scripts
-
 ### 1. `pdb_generator.py` - Structure File Converter
 
 Converts a dataset containing .sdf ligand files into one containing .pdb files, while preserving protein .pdb files.
