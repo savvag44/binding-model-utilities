@@ -41,7 +41,7 @@ python3 reformatter.py <input_csv> <root_dir> <output_csv>
 
 **Example**:
 ```bash
-python3 reformatter.py raw_data.csv /home/user/datasets/ processed_data.csv
+python3 reformatter.py FEP_benchmark.csv /home/user/data/FEP FEP_reformat.csv
 ```
 
 **Output Format**:
@@ -95,12 +95,18 @@ python3 metrics.py predictions.csv
 python3 metrics.py predictions.csv -g FEP_benchmark.csv
 ```
 
-**Metrics Calculated**:
-- **RMSE**: Root Mean Square Error
-- **Pearson**: Pearson correlation coefficient
-- **Kendall**: Kendall's tau correlation
-- **Spearman**: Spearman rank correlation
-- **C-index**: Concordance index
+The results .csv file would look like:
+```csv
+key,pred,pk
+id1,8.2,8.5
+```
+
+The group id lookup .csv file must contain the following (the AEV-plig formatted .csv files will work)
+```csv
+system_id,group_id
+id1,protein_family_1
+```
+
 
 ### 5. `metric_ensembles.py` - Ensemble Model Evaluator
 
@@ -150,32 +156,10 @@ Core library providing the `MetricCalculator` class and utility functions used b
 - **`FEP_benchmark.csv`**: FEP benchmark testset in the AEV-plig format
 - **`FEP_reformat.csv`**: FEP benchmark reformatted with reformatter.py
 
-## Requirements
-
 ### Python Packages
 ```bash
 pip install pandas numpy scipy rdkit-pypi tqdm numba openbabel
 ```
-should work.
 
-## File Format Requirements
 
-### Input CSV Formats
 
-**Raw format** (for reformatter.py):
-```csv
-system_id,pK,protein_path,ligand_path,split,group_id
-id1,8.5,/path/to/protein.pdb,/path/to/ligand.sdf,train,group1
-```
-
-**Processed format** (for metrics.py):
-```csv
-key,pred,pk
-id1,8.2,8.5
-```
-
-**Group lookup format**:
-```csv
-system_id,group_id
-id1,protein_family_1
-```
