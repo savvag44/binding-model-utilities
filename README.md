@@ -2,7 +2,7 @@
 
 This directory contains a collection of Python scripts for processing molecular binding data, converting file formats, and calculating performance metrics for machine learning models.
 
-### 1. `pdb_generator.py` - Structure File Converter
+### 1. `pdb_generator.py`
 
 Converts a dataset containing .sdf ligand files into one containing .pdb files, while preserving protein .pdb files.
 
@@ -23,7 +23,7 @@ python3 pdb_generator.py /home/user/data/FEP /home/user/data/FEP_reformat.csv /h
 
 **Requirements**: OpenBabel
 
-### 2. `reformatter.py` - CSV Path Reformatter
+### 2. `reformatter.py`
 
 Reformats CSV files formatted for [AEV-PLIG](https://github.com/weitse-hsu/AEV-PLIG-refined/) (e.g. ./FEP_benchmark.csv) into the format used by [ToolboxSF](https://github.com/guydurant/toolboxsf) (e.g. ./FEP_reformat.csv)
 
@@ -48,7 +48,7 @@ python3 reformatter.py FEP_benchmark.csv /home/user/data/FEP FEP_reformat.csv
 - `protein`: path to protein file (relative to a root directory)
 - `ligand`: path to ligand file (relative to a root directory)
 
-### 3. `reformat_train_valid_split.py` - Dataset Splitter
+### 3. `reformat_train_valid_split.py`
 
 Similar to reformatter.py but splits the dataset into separate training and validation CSV files based on the 'split' column, as found in AEV-plig .csv files.
 
@@ -68,7 +68,7 @@ python3 reformat_train_valid_split.py dataset.csv /data/root/ my_dataset
 # Creates: my_dataset_train.csv, my_dataset_validation.csv
 ```
 
-### 4. `metrics.py` - Performance Metric Calculator
+### 4. `metrics.py`
 
 Calculates performance metrics for machine learning model predictions with bootstrap uncertainty estimation.
 Can also perform weighted bootstrapping based on protein groups, as implemented in [AEV-PLIG](https://github.com/weitse-hsu/AEV-PLIG-refined/).
@@ -106,7 +106,7 @@ id1,protein_family_1
 ```
 
 
-### 5. `metric_ensembles.py` - Ensemble Model Evaluator
+### 5. `metric_ensembles.py`
 
 Similar to metrics.py, but calculates metrics for multiple models, then forms an "ensemble model" by taking the average prediction of the individual models for each complex.
 
@@ -145,7 +145,7 @@ python3 metric_ensembles.py /path/to/models -g FEP_benchmark.csv
 # Creates weighted ensemble metrics and saves to metrics_weighted.log
 ```
 
-### 6. `calc_metrics.py` - Core Metrics Library
+### 6. `calc_metrics.py`
 
 Core library providing the `MetricCalculator` class and utility functions used by other scripts. Contains implementation of all statistical metrics with bootstrap uncertainty estimation.
 
